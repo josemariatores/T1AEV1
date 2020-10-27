@@ -3,5 +3,9 @@ Vagrant.configure("2") do |config|
     config.vm.hostname="web-dev"
     config.vm.provision :shell, :path => "vagrant.sh"
     config.vm.network :forwarded_port, guest: 80, host: 8080, id: "nginx"
+    config.vm.synced_folder ".", "vagrant", disabled: true
+    config.vm.synced_folder "./www", "/usr/share/nginx/www"
+    config.vm.synced_folder "./sites-enabled/", "/etc/nginx/sites-enabled"
+    
 end
 
